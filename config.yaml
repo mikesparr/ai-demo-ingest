@@ -1,0 +1,61 @@
+swagger: "2.0"
+info:
+  title: banknotes
+  description: "Bulk api for scanning bank notes and predicting if real or fake."
+  version: "1.0.0"
+#host: DNS_NAME_OF_DEPLOYED_API
+schemes:
+  - "http" # change to https for real workloads
+paths:
+  "/notes":
+    post:
+      description: "Submits one or more bank notes for fraud detection."
+      operationId: "ingest"
+      parameters:
+        - in: body
+          name: batch
+          schema:
+            $ref: '#/definitions/ArrayOfNotes'
+          examples:
+            oneNote:
+              summary: Example of a single note
+              value: [{"id": "my-note-1", "features": [0.123,0.234,0.345,0.456]}]   # 4 features per note
+            multipleNotes:
+              summary: Example of multiple notes
+              value: [
+                {"id": "my-note-1", "features": [0.123,0.234,0.345,0.456]},
+                {"id": "my-note-2", "name": "Yen", "features": [0.123,0.234,0.345,0.456]},
+                {"id": "my-note-3", "features": [0.123,0.234,0.345,0.456]}
+              ]
+      responses:
+        200:
+          description: OK
+        400:
+          description: The specified user ID is invalid (e.g. not a number).
+        404:
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+definitions:
+  Note:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      features:
+        type: array
+        items:
+          type: float
+    required:
+      - id
+      - features
+  ArrayOfNotes:
+    properties:
+      notes:
+        type: array
+        items:
+          schema:
+            $ref: '#/definitions/Note'
+    required:
+      - notes
