@@ -35,7 +35,7 @@ cd ai-demo-ingest
 gcloud builds submit --tag gcr.io/${PROJECT_ID}/ai-demo-ingest
 
 # deploy the api to cloud run
-gcloud run deploy api-demo-ingest \
+gcloud run deploy ai-demo-ingest \
     --image gcr.io/${PROJECT_ID}/ai-demo-ingest \
     --region $GCP_REGION \
     --platform managed \
