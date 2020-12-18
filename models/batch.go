@@ -6,15 +6,15 @@ import (
 )
 
 type Note struct {
-	ID        string    `json:"id"`         // uuid
-	SubjectID string    `json:"subject_id"` // uuid
+	ID        string    `json:"id,omitempty"` // uuid
+	SubjectID string    `json:"subject_id"`   // uuid
 	Features  []float64 `json:"features"`
-	CreatedAt string    `json:"created_at"`
+	CreatedAt string    `json:"created_at,omitempty"`
 }
 type Batch struct {
-	ID        string `json:"id"`
+	ID        string `json:"id,omitempty"`
 	Notes     []Note `json:"notes"`
-	CreatedAt string `json:"created_at"`
+	CreatedAt string `json:"created_at,omitempty"`
 }
 type BatchList struct {
 	Batches []Batch `json:"batches"`
