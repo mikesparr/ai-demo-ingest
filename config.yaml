@@ -15,25 +15,27 @@ paths:
         - in: body
           name: batch
           schema:
-            $ref: '#/definitions/ArrayOfNotes'
+            $ref: '#/definitions/Batch'
           examples:
             oneNote:
               summary: Example of a single note
-              value: [{"id": "my-note-1", "features": [0.123,0.234,0.345,0.456]}]   # 4 features per note
+              value: {"notes": [{"id": "my-note-1", "features": [0.123,0.234,0.345,0.456]}]}   # 4 features per note
             multipleNotes:
               summary: Example of multiple notes
-              value: [
+              value: {"notes": [
                 {"id": "my-note-1", "features": [0.123,0.234,0.345,0.456]},
                 {"id": "my-note-2", "name": "Yen", "features": [0.123,0.234,0.345,0.456]},
                 {"id": "my-note-3", "features": [0.123,0.234,0.345,0.456]}
-              ]
+              ]}
       responses:
         200:
           description: OK
         400:
-          description: The specified user ID is invalid (e.g. not a number).
+          description: The input is invalid (e.g. not json or wrong input).
         404:
           description: A user with the specified ID was not found.
+        405:
+          description: Method was not allowed.
         default:
           description: Unexpected error
 definitions:
@@ -50,7 +52,7 @@ definitions:
     required:
       - id
       - features
-  ArrayOfNotes:
+  Batch:
     properties:
       notes:
         type: array
