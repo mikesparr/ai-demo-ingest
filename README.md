@@ -28,7 +28,8 @@ gcloud pubsub subscriptions create request-sub --topic $TOPIC_ID
 
 # enable services
 gcloud services enable compute.googleapis.com \
-    run.googleapis.com
+    run.googleapis.com \
+    cloudbuild.googleapis.com
 
 # clone repo and change to directory
 git clone git@github.com:mikesparr/ai-demo-ingest.git
