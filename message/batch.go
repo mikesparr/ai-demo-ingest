@@ -19,7 +19,7 @@ func (producer Producer) SubmitBatch(batch *models.Batch) error {
 	if err != nil {
 		return err
 	}
-	batch.RequestID = uuidV1.String()
+	batch.ID = uuidV1.String()
 	fmt.Printf("New batch submission %s\n", uuidV1.String())
 
 	topic := producer.Topic
