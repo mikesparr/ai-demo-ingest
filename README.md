@@ -42,6 +42,7 @@ gcloud builds submit --tag gcr.io/${PROJECT_ID}/ai-demo-ingest
 gcloud run deploy ai-demo-ingest \
     --image gcr.io/${PROJECT_ID}/ai-demo-ingest \
     --region $GCP_REGION \
+    --allow-unauthenticated \
     --platform managed \
     --update-env-vars PROJECT_ID=$PROJECT_ID,TOPIC_ID=$TOPIC_ID
 ```
@@ -56,8 +57,11 @@ export API_URL=$(gcloud run services describe ai-demo-ingest --format="value(sta
 # test the API
 curl -XPOST -H "Content-type: application/json" \
     $API_URL/notes \
-    -d '{"notes":[{"subject_id": "abc123", "features": [0.2234,1.2342,-1.3243,-0.9383]}]}'                           
+    -d '{"subjects": ["abc123"], "features": [[0.2234,1.2342,-1.3243,-0.9383]]}'                           
 ```
+
+# Spec
+See the OAS2/Swagger specification `config.yaml` for more details
 
 # Contributing
 This is just a demo so fork and use at your own discretion.

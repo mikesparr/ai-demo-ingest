@@ -4,16 +4,23 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+
+	"github.com/google/uuid"
 	"github.com/mikesparr/ai-demo-ingest/models"
 
 	"cloud.google.com/go/pubsub"
 )
 
 func (producer Producer) SubmitBatch(batch *models.Batch) error {
-	var id string
-	var createdAt string
 	ctx := context.Background()
-	fmt.Println("I ran SubmitBatch !!!")
+
+	// add new uuid for "request_id" before sending to pubsub
+	uuidV1, err := uuid.NewUUID()
+	if err != nil {
+		return err
+	}
+	batch.RequestID = uuidV1.String()
+	fmt.Printf("New batch submission %s\n", uuidV1.String())
 
 	topic := producer.Topic
 	batchJson, err := json.Marshal(batch)
@@ -28,7 +35,5 @@ func (producer Producer) SubmitBatch(batch *models.Batch) error {
 		return err
 	}
 
-	batch.ID = id
-	batch.CreatedAt = createdAt
 	return nil
 }

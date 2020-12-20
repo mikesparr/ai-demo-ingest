@@ -19,14 +19,17 @@ paths:
           examples:
             oneNote:
               summary: Example of a single note
-              value: {"notes": [{"id": "my-note-1", "features": [0.123,0.234,0.345,0.456]}]}   # 4 features per note
+              value: {"subjects": ["my-note-1"], "features": [[0.123,0.234,0.345,0.456]]}   # 4 features per note
             multipleNotes:
               summary: Example of multiple notes
-              value: {"notes": [
-                {"id": "my-note-1", "features": [0.123,0.234,0.345,0.456]},
-                {"id": "my-note-2", "name": "Yen", "features": [0.123,0.234,0.345,0.456]},
-                {"id": "my-note-3", "features": [0.123,0.234,0.345,0.456]}
-              ]}
+              value: {
+                "subjects": ["my-note-1", "my-note-2", "my-note-3"],
+                "features": [
+                  [0.123,0.234,0.345,0.456],
+                  [0.123,0.234,0.345,0.456],
+                  [0.123,0.234,0.345,0.456]
+                ]
+              }
       responses:
         200:
           description: OK
@@ -39,25 +42,18 @@ paths:
         default:
           description: Unexpected error
 definitions:
-  Note:
+  Batch:
     properties:
-      id:
-        type: string
-      name:
-        type: string
+      subjects:
+        type: array
+        items:
+          type: string
       features:
         type: array
         items:
-          type: float
+          type: array
+          items:
+            type: float
     required:
-      - id
+      - subjects
       - features
-  Batch:
-    properties:
-      notes:
-        type: array
-        items:
-          schema:
-            $ref: '#/definitions/Note'
-    required:
-      - notes
