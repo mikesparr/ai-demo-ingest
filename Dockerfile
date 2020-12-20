@@ -1,4 +1,4 @@
-FROM golang:1.14.6-alpine3.12 as builder
+FROM golang:1.15.6-alpine3.12 as builder
 COPY go.mod go.sum /go/src/github.com/mikesparr/ai-demo-ingest/
 WORKDIR /go/src/github.com/mikesparr/ai-demo-ingest
 RUN go mod download
