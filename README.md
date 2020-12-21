@@ -7,6 +7,9 @@ demo purposes using [go-chi](https://github.com/go-chi/chi) HTTP framework for G
 # Demo (nothing too sexy)
 ![API Demo](./demo.gif)
 
+# Architecture
+![AI demo architecture](./arch.png)
+
 # Prerequisites
 You must be familiar with Google Cloud Platform and have the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) (`gcloud` CLI) installed. 
 If you want to recreate the **AI Demo** then you will want an active project with billing enabled.
