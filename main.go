@@ -15,11 +15,14 @@ import (
 )
 
 func main() {
+	// server
 	addr := ":8080"
 	listener, err := net.Listen("tcp", addr)
 	if err != nil {
 		log.Fatalf("Error occurred: %s", err.Error())
 	}
+
+	// pubsub
 	projectID, topicID :=
 		os.Getenv("PROJECT_ID"),
 		os.Getenv("TOPIC_ID")
@@ -29,6 +32,7 @@ func main() {
 	}
 	defer producer.Topic.Stop()
 
+	// inject pubsub producer
 	httpHandler := handler.NewHandler(producer)
 	server := &http.Server{
 		Handler: httpHandler,

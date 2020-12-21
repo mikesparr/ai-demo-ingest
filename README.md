@@ -1,5 +1,7 @@
 # AI Demo API (batch note review)
-This API accepts user submission of one or more bank notes for analysis. This is created for
+This API accepts user submission of one or more bank notes for analysis. After submission, 
+backend processors perform prediction and publish results. The results can then be viewed 
+using the [predict API](https://github.com/mikesparr/ai-demo-predict). This is created for
 demo purposes using [go-chi](https://github.com/go-chi/chi) HTTP framework for Golang.
 
 # Demo (nothing too sexy)
