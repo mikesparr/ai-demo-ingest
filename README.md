@@ -17,7 +17,7 @@ These are the steps to recreate this in your own environment.
 
 ```bash
 export PROJECT_ID=$(gcloud config get-value project)
-export TOPIC_ID="requests"
+export TOPIC_ID="request"
 export GCP_REGION="us-central1"
 
 # create pubsub topics
