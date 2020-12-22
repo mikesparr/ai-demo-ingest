@@ -32,6 +32,7 @@ func (b *Batch) Bind(r *http.Request) error {
 	for _, sub := range b.Features {
 		if len(sub) != 4 {
 			return fmt.Errorf("there must be four features per subject")
+			break
 		}
 	}
 	return nil
