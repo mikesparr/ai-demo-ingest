@@ -29,8 +29,10 @@ func (b *Batch) Bind(r *http.Request) error {
 	if len(b.Features) != len(b.Subjects) {
 		return fmt.Errorf("features count must equal subjects")
 	}
-	if len(b.Features[0]) != 4 {
-		return fmt.Errorf("there must be four features per subject")
+	for _, sub := range b.Features {
+		if len(sub) != 4 {
+			return fmt.Errorf("there must be four features per subject")
+		}
 	}
 	return nil
 }
