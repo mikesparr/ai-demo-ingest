@@ -16,7 +16,7 @@ func submitBatch(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Submitting batch")
 	batch := &models.Batch{}
 	if err := render.Bind(r, batch); err != nil {
-		render.Render(w, r, ErrBadRequest)
+		render.Render(w, r, ErrorBadRequest(err))
 		return
 	}
 	if err := producer.SubmitBatch(batch); err != nil {

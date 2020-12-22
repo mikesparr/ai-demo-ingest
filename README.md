@@ -60,16 +60,16 @@ gcloud run deploy ai-demo-ingest \
 ```
 
 # Usage
-Once deployed, you can fetch the `$API_URL` from Cloud Run and `POST` data to the API. Since it just publishes data to a Pub/Sub topic, you will just receive either the submitted record, or error message.
+Once deployed, you can fetch the `$INGEST_URL` from Cloud Run and `POST` data to the API. Since it just publishes data to a Pub/Sub topic, you will just receive either the submitted record, or error message.
 
 ```bash
 # get URL of service
-export API_URL=$(gcloud run services describe ai-demo-ingest --format="value(status.url)" --platform managed --region $GCP_REGION)
+export INGEST_URL=$(gcloud run services describe ai-demo-ingest --format="value(status.url)" --platform managed --region $GCP_REGION)
 
 # test the API
 curl -XPOST -H "Content-type: application/json" \
-    $API_URL/notes \
-    -d '{"subjects": ["abc123"], "features": [[0.2234,1.2342,-1.3243,-0.9383]]}'                           
+    $INGEST_URL/notes \
+    -d '{"subjects": ["test-request"], "features": [[0.2234,1.2342,-1.3243,-0.9383]]}'                       
 ```
 
 # Spec
