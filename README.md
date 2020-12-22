@@ -80,7 +80,7 @@ Although this is only a demo, a few additional features that should be added wou
 - automated tests
 - standardized Request / Response
 - retry logic with exponential backoff
-- tracing using [opentracing](https://opentracing.io/)
+- tracing, metrics using [opentelemetry](https://opentelemetry.io/)
 - messages using [cloudevents](https://cloudevents.io/)
 
 # Contributing
