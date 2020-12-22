@@ -5,10 +5,10 @@ using the [predict API](https://github.com/mikesparr/ai-demo-predict). This is c
 demo purposes using [go-chi](https://github.com/go-chi/chi) HTTP framework for Golang.
 
 # Demo (nothing too sexy)
-![API Demo](./demo.gif)
+![API Demo](./img_demo.gif)
 
 # Architecture
-![AI demo architecture](./arch.png)
+![AI demo architecture](./img_arch.png)
 
 # Components
 - [Config](https://#) (pending)
@@ -74,6 +74,11 @@ curl -XPOST -H "Content-type: application/json" \
 
 # Spec
 See the OAS2/Swagger specification `config.yaml` for more details
+
+# Validation
+In an attempt to minimize *"garbage in"* but make the API user-friendly, adding thorough 
+input checks to the `{model}.Bind()` with useful error message responses.
+![AI demo architecture](./img_validation.png)
 
 # Other considerations
 Although this is only a demo, a few additional features that should be added would be:
