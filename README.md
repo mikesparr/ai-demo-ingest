@@ -76,8 +76,7 @@ curl -XPOST -H "Content-type: application/json" \
 See the OAS2/Swagger specification `config.yaml` for more details
 
 # Validation
-In an attempt to minimize *"garbage in"* but make the API user-friendly, adding thorough 
-input checks to the `{model}.Bind()` with useful error message responses.
+In an attempt to minimize *"garbage in"* but make the API user-friendly, adding thorough input checks to the `{model}.Bind()` with useful error message responses.
 ![AI demo architecture](./img_validation.png)
 
 # Other considerations
