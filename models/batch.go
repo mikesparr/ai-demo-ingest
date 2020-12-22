@@ -23,12 +23,14 @@ type Batch struct {
 func (b *Batch) Bind(r *http.Request) error {
 	fmt.Println("I validated the batch !!!")
 
-	// TODO: loop through subjects and features and make sure match and required features match
-	if b.Subjects == nil {
-		return fmt.Errorf("subjects is a required field")
+	if len(b.Subjects) <= 0 {
+		return fmt.Errorf("subjects must have one or more record")
 	}
-	if b.Features == nil {
-		return fmt.Errorf("features is a required field")
+	if len(b.Features) != len(b.Subjects) {
+		return fmt.Errorf("features count must equal subjects")
+	}
+	if len(b.Features[0]) != 4 {
+		return fmt.Errorf("there must be four features per subject")
 	}
 	return nil
 }
