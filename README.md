@@ -12,7 +12,7 @@ demo purposes using [go-chi](https://github.com/go-chi/chi) HTTP framework for G
 
 # Components
 - [Config](https://#) (pending)
-- [Web App](https://#) (pending)
+- [Web App](https://github.com/mikesparr/ai-demo-web)
 - [Ingest API](https://github.com/mikesparr/ai-demo-ingest) (this repo)
 - [Predict API](https://github.com/mikesparr/ai-demo-predict)
 - [Processors](https://github.com/mikesparr/ai-demo-functions)
