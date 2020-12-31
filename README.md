@@ -69,7 +69,7 @@ export INGEST_URL=$(gcloud run services describe ai-demo-ingest --format="value(
 # test the API
 curl -XPOST -H "Content-type: application/json" \
     $INGEST_URL/notes \
-    -d '{"subjects": ["test-request"], "features": [[0.2234,1.2342,-1.3243,-0.9383]]}'                       
+    -d '{"subjects": ["test-record"], "features": [[0.2234,1.2342,-1.3243,-0.9383]]}'                       
 ```
 
 # Spec

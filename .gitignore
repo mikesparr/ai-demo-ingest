@@ -1,3 +1,4 @@
 *key.json
 setup.sh
-*.env
+.env*
+batch*.json
