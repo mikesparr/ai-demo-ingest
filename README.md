@@ -1,4 +1,5 @@
-# AI Demo API (batch note review)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mikesparr_ai-demo-ingest&metric=alert_status)](https://sonarcloud.io/dashboard?id=mikesparr_ai-demo-ingest)
+
 This API accepts user submission of one or more bank notes for analysis. After submission, 
 backend processors perform prediction and publish results. The results can then be viewed 
 using the [predict API](https://github.com/mikesparr/ai-demo-predict). This is created for
