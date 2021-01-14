@@ -11,6 +11,7 @@ import (
 	"cloud.google.com/go/pubsub"
 )
 
+// SubmitBatch publishes batch  to pubsub topic
 func (producer Producer) SubmitBatch(batch *models.Batch) error {
 	ctx := context.Background()
 
@@ -23,13 +24,13 @@ func (producer Producer) SubmitBatch(batch *models.Batch) error {
 	fmt.Printf("New batch submission %s\n", uuidV1.String())
 
 	topic := producer.Topic
-	batchJson, err := json.Marshal(batch)
+	batchJSON, err := json.Marshal(batch)
 	if err != nil {
 		return err
 	}
 
 	res := topic.Publish(ctx, &pubsub.Message{
-		Data: []byte(batchJson),
+		Data: []byte(batchJSON),
 	})
 	if _, err := res.Get(ctx); err != nil {
 		return err

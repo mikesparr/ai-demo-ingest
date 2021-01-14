@@ -16,15 +16,24 @@ func submitBatch(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Submitting batch")
 	batch := &models.Batch{}
 	if err := render.Bind(r, batch); err != nil {
-		render.Render(w, r, ErrorBadRequest(err))
+		err := render.Render(w, r, ErrorBadRequest(err))
+		if err != nil {
+			fmt.Println("Error rendering")
+		}
 		return
 	}
 	if err := producer.SubmitBatch(batch); err != nil {
-		render.Render(w, r, ErrorRenderer(err))
+		err := render.Render(w, r, ErrorRenderer(err))
+		if err != nil {
+			fmt.Println("Error rendering")
+		}
 		return
 	}
 	if err := render.Render(w, r, batch); err != nil {
-		render.Render(w, r, ServerErrorRenderer(err))
+		err := render.Render(w, r, ServerErrorRenderer(err))
+		if err != nil {
+			fmt.Println("Error rendering")
+		}
 		return
 	}
 }

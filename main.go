@@ -17,6 +17,7 @@ import (
 func main() {
 	// server
 	addr := ":8080"
+	/* #nosec */
 	listener, err := net.Listen("tcp", addr)
 	if err != nil {
 		log.Fatalf("Error occurred: %s", err.Error())
@@ -38,7 +39,10 @@ func main() {
 		Handler: httpHandler,
 	}
 	go func() {
-		server.Serve(listener)
+		err := server.Serve(listener)
+		if err != nil {
+			log.Printf("Error starting the server %v\n", err)
+		}
 	}()
 	defer Stop(server)
 	log.Printf("Started server on %s", addr)
@@ -48,6 +52,7 @@ func main() {
 	log.Println("Stopping API server.")
 }
 
+// Stop safely shuts down server
 func Stop(server *http.Server) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
